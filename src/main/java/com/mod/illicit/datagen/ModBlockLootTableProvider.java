@@ -1,5 +1,6 @@
 package com.mod.illicit.datagen;
 
+import com.mod.illicit.custom.block.BottleBlock;
 import com.mod.illicit.general.ModdedBlocks;
 import com.mod.illicit.general.ModdedItems;
 import com.mod.illicit.custom.block.CannabisBlock;
@@ -10,9 +11,17 @@ import net.minecraft.core.HolderLookup;
 import net.minecraft.data.loot.BlockLootSubProvider;
 import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.CandleBlock;
+import net.minecraft.world.level.storage.loot.LootPool;
+import net.minecraft.world.level.storage.loot.LootTable;
+import net.minecraft.world.level.storage.loot.entries.LootItem;
+import net.minecraft.world.level.storage.loot.entries.LootPoolEntryContainer;
+import net.minecraft.world.level.storage.loot.functions.SetItemCountFunction;
 import net.minecraft.world.level.storage.loot.predicates.LootItemBlockStatePropertyCondition;
+import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
 import net.minecraftforge.registries.RegistryObject;
 
+import java.util.List;
 import java.util.Set;
 
 public class ModBlockLootTableProvider extends BlockLootSubProvider {
@@ -21,12 +30,36 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
         super(Set.of(), FeatureFlags.REGISTRY.allFlags(), registries);
     }
 
+    protected LootTable.Builder createBottleBlockDrops(final Block block) {
+        return LootTable.lootTable()
+                .withPool(
+                        LootPool.lootPool()
+                                .setRolls(ConstantValue.exactly(1.0F))
+                                .add(
+                                        (LootPoolEntryContainer.Builder<?>)this.applyExplosionDecay(
+                                                block,
+                                                LootItem.lootTableItem(block)
+                                                        .apply(
+                                                                List.of(2, 3, 4),
+                                                                count -> SetItemCountFunction.setCount(ConstantValue.exactly(count.intValue()))
+                                                                        .when(
+                                                                                LootItemBlockStatePropertyCondition.hasBlockStateProperties(block)
+                                                                                        .setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(BottleBlock.BOTTLES, count.intValue()))
+                                                                        )
+                                                        )
+                                        )
+                                )
+                );
+    }
+
     @Override
     protected void generate() {
         dropSelf(ModdedBlocks.BONG.get());
         dropSelf(ModdedBlocks.DRYING_RACK.get());
         dropSelf(ModdedBlocks.DISTILLER.get());
         dropSelf(ModdedBlocks.CELLAR.get());
+
+        this.add(ModdedBlocks.WINE_BOTTLE.get(), block -> createBottleBlockDrops(ModdedBlocks.WINE_BOTTLE.get()));
 
         this.add(ModdedBlocks.CANNABIS.get(),
                 block -> createCropDrops(

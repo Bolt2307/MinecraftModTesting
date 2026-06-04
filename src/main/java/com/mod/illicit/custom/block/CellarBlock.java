@@ -8,7 +8,7 @@ import net.minecraft.world.level.block.state.properties.IntegerProperty;
 
 public class CellarBlock extends YawDirectionalBlock {
     public static final int MAX_BOTTLE_COUNT = 6;
-    public static final IntegerProperty BOTTLE_COUNT = IntegerProperty.create("bottle_count", 0, MAX_BOTTLE_COUNT);
+    public static final IntegerProperty BOTTLES = IntegerProperty.create("bottles", 0, MAX_BOTTLE_COUNT);
 
     public CellarBlock(Properties properties) {
         super(properties);
@@ -16,7 +16,7 @@ public class CellarBlock extends YawDirectionalBlock {
 
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-        builder.add(BOTTLE_COUNT);
+        builder.add(BOTTLES);
         super.createBlockStateDefinition(builder);
     }
 }

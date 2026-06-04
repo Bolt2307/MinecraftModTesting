@@ -1,0 +1,8 @@
+{
+    "variants": {
+        "bottles=1": {"model": "illicit:block/wine_bottle1"},
+        "bottles=2": {"model": "illicit:block/wine_bottle2"},
+        "bottles=3": {"model": "illicit:block/wine_bottle3"},
+        "bottles=4": {"model": "illicit:block/wine_bottle4"}
+    }
+}

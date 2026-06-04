@@ -66,6 +66,7 @@ public class ModBlockModelGenerators extends BlockModelGenerators {
 
     @Override
     public void run() {
+        createTrivialCube(ModdedBlocks.WINE_BOTTLE.get());
         createTrivialCube(ModdedBlocks.DISTILLER.get());
         createTrivialCube(ModdedBlocks.CELLAR.get());
         createTrivialCube(ModdedBlocks.DRYING_RACK.get());

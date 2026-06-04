@@ -1,6 +1,8 @@
 package com.mod.illicit.general;
 
 import com.mod.illicit.Illicit;
+import com.mod.illicit.custom.item.BeerItem;
+import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
@@ -23,7 +25,7 @@ public class ModdedItems {
     );
 
     public static final RegistryObject<Item> BEER = ITEMS.register("beer",
-            () -> new Item(new Item.Properties()
+            () -> new BeerItem(new Item.Properties()
                     .setId(ITEMS.key("beer")))
     ); // properties can be initialized here
 
@@ -94,6 +96,12 @@ public class ModdedItems {
     public static final RegistryObject<Item> PACKED_BOWL = ITEMS.register("packed_bowl",
             () -> new Item(new Item.Properties()
                     .setId(ITEMS.key("packed_bowl")))
+    );
+
+    public static final RegistryObject<Item> WINE = ITEMS.register("wine",
+            () -> new BlockItem(ModdedBlocks.WINE_BOTTLE.get(), new Item.Properties()
+                    .setId(ITEMS.key("wine"))
+            )
     );
 
     public ModdedItems(FMLJavaModLoadingContext context) {

@@ -1,0 +1,10 @@
+{
+  "type": "illicit:distilling",
+  "ingredients": [
+    "illicit:grapes",
+    "minecraft:sugar"
+  ],
+  "duration": 1800,
+  "bottle": ["minecraft:empty_bottle"],
+  "result": "illicit:wine"
+}

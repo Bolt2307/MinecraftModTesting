@@ -1,0 +1,10 @@
+{
+  "type": "illicit:distilling",
+  "ingredients": [
+    "minecraft:potatoes",
+    "minecraft:sugar"
+  ],
+  "duration": 3600,
+  "bottle": ["minecraft:empty_bottle"],
+  "result": "illicit:vodka"
+}

@@ -91,6 +91,17 @@ public class ModdedBlocks {
             )
     );
 
+    public static final RegistryObject<Block> WINE_BOTTLE = BLOCKS.register("wine_bottle",
+            () -> new BottleBlock(4,
+                    BlockBehaviour.Properties.of()
+                            .setId(BLOCKS.key("wine_bottle"))
+                            .mapColor(MapColor.STONE)
+                            .sound(SoundType.GLASS)
+                            .noOcclusion()
+                            .noCollision()
+            )
+    );
+
     public ModdedBlocks(FMLJavaModLoadingContext context) {
         var modBusGroup = context.getModBusGroup();
         BLOCKS.register(modBusGroup);
